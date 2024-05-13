@@ -1,12 +1,12 @@
 <template>
   <div>
-    this is a pig
+    this is a Role
   </div>
 </template>
   
   <script>
 export default {
-  name: "User",
+  name: "Role",
   data () {
     return {
 

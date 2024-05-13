@@ -1,21 +1,28 @@
+import store from '@/store'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'manage',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Manage.vue'),
-    // children:{
-    //   path: 'user',
-    //   name: 'user',
-    //   component: () => import(/* webpackChunkName: "about" */ '@/components/HelloWorld')
-    // }
-    //  TODO 上面的两个问题就是 注释children之后能运行  扫描view的会卡死但是扫描components没事
-  }
+    component: () => import(/* webpackChunkName: "about" */ '@/components/Manage'),
+    children: [
+      {
+        path: '/user',
+        name: '用户管理',
+        component: () => import(/* webpackChunkName: "about" */ '@/components/User')
+      },
+      {
+        path: '/role',
+        name: '角色管理',
+        component: () => import(/* webpackChunkName: "about" */ '@/components/Role')
+      }
+    ]
+
+  },
+
 ]
 
 const router = new VueRouter({
@@ -25,3 +32,9 @@ const router = new VueRouter({
 })
 
 export default router
+
+router.beforeEach((to, from, next) => {
+  localStorage.setItem('curPageName', to.name)
+  store.commit('setPath')
+  next()
+})
