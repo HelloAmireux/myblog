@@ -8,9 +8,12 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/global.css'
 
+import request from "@/utils/request";
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false
+
+Vue.prototype.request=request
 
 new Vue({
   router,

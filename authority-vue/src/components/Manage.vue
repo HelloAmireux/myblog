@@ -2,7 +2,7 @@
   <el-container style="min-height: 100vh">
 
     <el-aside width="sideWidth+'px'">
-
+      <!-- begin -->
       <el-menu
         default-active="1-4-1"
         class="el-menu-vertical-demo"
@@ -14,6 +14,16 @@
         router
         :collapse="isCollapse"
       >
+        <div style="height:60px;line-height:60px;text-align:center">
+          <img
+            src="../assets/logo.png"
+            style=" width:30px;position:relative;margin-right:5px;top:6px"
+          >
+          <b
+            style="color:wheat"
+            v-show="logoTextShow"
+          >后台管理系统</b>
+        </div>
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-location"></i>
@@ -38,12 +48,19 @@
         </el-menu-item>
 
       </el-menu>
+      <!-- end -->
+
+      <Aside
+        :isCollapse="isCollapse"
+        :logoTextShow="logoTextShow"
+      ></Aside>
 
     </el-aside>
 
     <el-container>
       <el-header style="border-bottom: 1px solid #ccc">
 
+        <!-- begin -->
         <div style="line-height: 60px;display: flex">
           <div style="flex:1; font-size:30px">
 
@@ -106,32 +123,41 @@
             </el-dropdown-menu>
           </el-dropdown>
         </div>
-
+        <!-- end -->
+        <Header
+          @collapse="collapse"
+          :collapseBtnClass="collapseBtnClass"
+        ></Header>
       </el-header>
 
       <el-main>
-        <router-view>
-
-        </router-view>
+        <router-view></router-view>
       </el-main>
-
     </el-container>
   </el-container>
 </template>
 
 <script>
+import Aside from '@/components/Aside.vue'
+import Header from '@/components/Header'
 export default {
   name: "Manage",
-  computed: {
-    curPageName () {
-      return this.$store.state.curPageName
-    }
+  component: {
+    Aside,
+    Header
   },
+
   data () {
     return {
+      logoTextShow: true,
       isCollapse: false,
       collapseBtnClass: 'el-icon-s-fold',
       sideWidth: 200
+    }
+  },
+  computed: {
+    curPageName () {
+      return this.$store.state.curPageName
     }
   },
   methods: {
@@ -140,11 +166,13 @@ export default {
       if (this.isCollapse) {
         //收缩
         this.sideWidth = 64;
-        this.collapseBtnClass = 'el-icon-s-unfold'
+        this.collapseBtnClass = 'el-icon-s-unfold';
+        this.logoTextShow = false
       } else {
         //展开
         this.sideWidth = 200;
-        this.collapseBtnClass = 'el-icon-s-fold'
+        this.collapseBtnClass = 'el-icon-s-fold';
+        this.logoTextShow = true
       }
     }
   }
@@ -154,6 +182,7 @@ export default {
 </script>
 
 <style scoped>
+/*去掉side侧边栏的滚动条*/
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;

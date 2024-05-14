@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController  {
@@ -44,7 +44,7 @@ public class UserController  {
      * 根据id删除
      * */
     @DeleteMapping("/deleteById/{id}")
-    public Result save(@PathVariable Integer id){
+    public Result deleteById(@PathVariable Integer id){
         //传过来有无主键，有就是修改，没有就是新增
         boolean b=userService.removeById(id);
         if (b){
@@ -58,8 +58,8 @@ public class UserController  {
     /*
      * 批量删除
      * */
-    @PostMapping("/deletebatch")
-    public Result save(@RequestParam List<Integer> islist){
+    @PostMapping("/deleteBatch")
+    public Result deleteBatch(@RequestParam List<Integer> islist){
         //传过来有无主键，有就是修改，没有就是新增
         boolean b=userService.removeByIds(islist);
         if (b){
