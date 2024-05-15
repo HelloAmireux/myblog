@@ -22,6 +22,12 @@ const routes = [
     ]
 
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "about" */ '@/components/Login'),
+  },
+
 
 ]
 
