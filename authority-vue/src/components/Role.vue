@@ -309,114 +309,114 @@ export default {
   created() {
     this.load();
   },
-  // methods:{
-  //   load(){
-  //     this.request.get("/role/findPage",{
-  //       params:{
-  //         pageNum:this.pageNum,
-  //         pageSize:this.pageSize,
-  //         name:this.name,
-  //       }
-  //     }).then(res => {
-  //       this.tableData = res.data.records;
-  //       this.total = res.data.total;
-  //     })
-  //   },
-  //   getRowClass({rowIndex,columnIndex}){
-  //     if(rowIndex === 0){
-  //       return 'background:#ccc'
-  //     }
-  //   },
-  //   reset(){
-  //     this.email = '';
-  //     this.username = '';
-  //     this.load();
-  //   },
-  //   save(){
-  //     this.dialogFormVisible = true;
-  //     this.form = {};
-  //   },
-  //   handleAdd(){
-  //     this.request.post("/role/save",this.form).then(res => {
-  //       if(res.code === '200'){
-  //         if(this.form.id){
-  //           this.$message.success('编辑成功');
-  //         }else{
-  //           this.$message.success('新增成功');
-  //         }
-  //         this.dialogFormVisible = false;
-  //         this.load();
-  //       }else{
-  //         this.$message.error('操作失败，请联系管理员')
-  //       }
-  //     })
-  //   },
-  //   handleEdit(row){
-  //     this.form = JSON.parse(JSON.stringify(row));
-  //     this.dialogFormVisible = true;
-  //   },
-  //   handleDelete(id){
-  //     if(id){
-  //       this.request.delete('/role/deleteById/' + id).then(res => {
-  //         if(res.code === '200'){
-  //           this.$message.success('删除数据成功');
-  //           this.handleCalPageNum();
-  //         }else{
-  //           this.$message.error('删除数据失败，请联系管理员')
-  //         }
-  //       })
-  //     }else{
-  //       this.$message.error('没有id信息，无法删除');
-  //     }
-  //   },
-  //   cancel(){
-  //     this.$message.success('取消操作成功');
-  //   },
-  //   handleSelectionChange(val) {
-  //     this.multipleSelection = val;
-  //   },
-  //   deleteBatch(){
-  //     //批量删除数据
-  //     if(this.multipleSelection.length === 0){
-  //       this.$message.warning("请先选择要删除的数据");
-  //       return
-  //     }
-  //     const ids = this.multipleSelection.map(v => v.id);
-  //     this.request.post('/role/deleteBatch',ids).then(res => {
-  //       if(res.code === '200'){
-  //         this.$message.success('批量删除成功');
-  //         this.handleCalPageNum();
-  //       }else{
-  //         this.$message.error('批量删除失败');
-  //       }
-  //     })
-  //   },
-  //   handleSizeChange(val) {
-  //     this.pageSize = val;
-  //     this.load();
-  //   },
-  //   handleCurrentChange(val) {
-  //     this.pageNum = val;
-  //     this.load();
-  //   },
-  //   handleCalPageNum(){
-  //     this.request.get("/role/findPage",{
-  //       params:{
-  //         pageNum:this.pageNum,
-  //         pageSize:this.pageSize,
-  //         username:this.username,
-  //         email:this.email
-  //       }
-  //     }).then(res => {
-  //       this.total = res.data.total;
-  //       this.pageNum = (this.total % this.pageSize === 0) ? (this.total / this.pageSize) : Math.floor((this.total / this.pageSize) + 1);
-  //       if(this.pageNum < 1){
-  //         this.pageNum = 1;
-  //       }
-  //       this.load();
-  //     })
-  //   }
-  // }
+  methods:{
+    load(){
+      this.request.get("/role/findPage",{
+        params:{
+          pageNum:this.pageNum,
+          pageSize:this.pageSize,
+          name:this.name,
+        }
+      }).then(res => {
+        this.tableData = res.data.records;
+        this.total = res.data.total;
+      })
+    },
+    getRowClass({rowIndex,columnIndex}){
+      if(rowIndex === 0){
+        return 'background:#ccc'
+      }
+    },
+    reset(){
+      this.email = '';
+      this.username = '';
+      this.load();
+    },
+    save(){
+      this.dialogFormVisible = true;
+      this.form = {};
+    },
+    handleAdd(){
+      this.request.post("/role/save",this.form).then(res => {
+        if(res.code === '200'){
+          if(this.form.id){
+            this.$message.success('编辑成功');
+          }else{
+            this.$message.success('新增成功');
+          }
+          this.dialogFormVisible = false;
+          this.load();
+        }else{
+          this.$message.error('操作失败，请联系管理员')
+        }
+      })
+    },
+    handleEdit(row){
+      this.form = JSON.parse(JSON.stringify(row));
+      this.dialogFormVisible = true;
+    },
+    handleDelete(id){
+      if(id){
+        this.request.delete('/role/deleteById/' + id).then(res => {
+          if(res.code === '200'){
+            this.$message.success('删除数据成功');
+            this.handleCalPageNum();
+          }else{
+            this.$message.error('删除数据失败，请联系管理员')
+          }
+        })
+      }else{
+        this.$message.error('没有id信息，无法删除');
+      }
+    },
+    cancel(){
+      this.$message.success('取消操作成功');
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
+    },
+    deleteBatch(){
+      //批量删除数据
+      if(this.multipleSelection.length === 0){
+        this.$message.warning("请先选择要删除的数据");
+        return
+      }
+      const ids = this.multipleSelection.map(v => v.id);
+      this.request.post('/role/deleteBatch',ids).then(res => {
+        if(res.code === '200'){
+          this.$message.success('批量删除成功');
+          this.handleCalPageNum();
+        }else{
+          this.$message.error('批量删除失败');
+        }
+      })
+    },
+    handleSizeChange(val) {
+      this.pageSize = val;
+      this.load();
+    },
+    handleCurrentChange(val) {
+      this.pageNum = val;
+      this.load();
+    },
+    handleCalPageNum(){
+      this.request.get("/role/findPage",{
+        params:{
+          pageNum:this.pageNum,
+          pageSize:this.pageSize,
+          username:this.username,
+          email:this.email
+        }
+      }).then(res => {
+        this.total = res.data.total;
+        this.pageNum = (this.total % this.pageSize === 0) ? (this.total / this.pageSize) : Math.floor((this.total / this.pageSize) + 1);
+        if(this.pageNum < 1){
+          this.pageNum = 1;
+        }
+        this.load();
+      })
+    }
+  }
 }
 </script>
 
