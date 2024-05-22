@@ -9,7 +9,7 @@
     <div style="display: flex;width:55%;height:40%;margin: 150px auto;background-color: white;border-radius: 10px;overflow: hidden;background-color: bisque">
       <!--      左侧图片显示-->
       <div style="width: 50%;margin-top: 30px;margin-left: 30px">
-        <img src="../assets/logo.png" alt="" style="width:100%;height:90%" />
+        <img src="../assets/logo2.jpg" alt="" style="width:90%;height:90%" />
       </div>
       <!--      提交表单-->
       <div style="width:350px;margin-top: 30px">
@@ -81,6 +81,7 @@ export default {
           }
           this.$router.push('/user');
 
+        //  TODO 这里还有登录验证需要写一下
         } else {
           console.log('error submit!!');
           return false;
@@ -114,7 +115,7 @@ export default {
 
 <style scoped>
 .wrapper{
-  background: url("../assets/logo.png");
+  background: url("../assets/1.jpg");
   width:100%;
   height: 100%;
   position: fixed;
